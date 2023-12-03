@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <title>Document</title>
+    <style>
+        #svg1{margin-bottom:100px}
+        .heart1 {animation: fadeOut 1s infinite} 
+        .heart2 {animation: fadeOut 1.5s infinite}
+        .heart3 {animation: fadeOut 1.25s infinite}
+        @keyframes fadeOut { 
+            0% {
+                opacity: 1;
+                transform: translate3d(0px, 35px, 0);
+            }
+
+            30% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+                transform: translate3d(0px, 0px, 0);
+            }
+
+        }
+    </style>
+</head>
+<body>
+    <svg id="svg1" viewBox="0 0 500 500">
+        <path class="heart1" d="M145.374 31.943c-52.434-58.261-99.042 0-75.739 46.608s75.739 64.086 75.739 64.086 52.434-17.478 75.739-64.086-23.305-104.868-75.739-46.608z" fill="#ffb1bb"/>
+        <path class="heart2" d="M95.189 275.054c-28.686-31.873-54.183 0-41.434 25.498s41.434 35.06 41.434 35.06 28.686-9.561 41.434-35.06c12.749-25.498-12.748-57.371-41.434-25.498z" fill="#ffd8dd"/>
+        <path class="heart3" d="M416.811 146.405c-28.686-31.873-54.183 0-41.434 25.498s41.434 35.06 41.434 35.06 28.686-9.562 41.434-35.06c12.749-25.498-12.749-57.371-41.434-25.498z" fill="#fe6a89"/>
+        <g class="flask-top" fill="#efecf1">
+            <path d="M195.114 158.72h128.649v32.162H195.114z"/>
+            <path d="M426.851 466.796l-127.21-187.469v-88.446h-80.405v88.446L92.024 466.796c-10.868 16.017.605 37.666 19.96 37.666h294.908c19.355 0 30.828-21.65 19.959-37.666z"/>
+        </g>
+        <path d="M243.357 287.368v-56.284c0-8.882 7.199-16.081 16.081-16.081h40.203v-24.122h-80.405v88.446l-48.877 72.03h29.385l43.613-63.989z" fill="#e0dae3"/>
+        <path d="M170.358 351.356l-78.334 115.44 78.334-115.44z" fill="#fe5578"/>
+        <path class="potion1" d="M348.518 351.356h-178.16l-78.334 115.44c-10.868 16.017.605 37.666 19.96 37.666h294.908c19.356 0 30.828-21.65 19.96-37.666l-78.334-115.44z" fill="#fe5578"/>
+        <path class="potion2" d="M137.501 442.674l62.241-91.317h-29.385L92.024 466.796c-10.868 16.017.605 37.666 19.96 37.666h294.908c14.175 0 24.111-11.615 24.15-24.122h-273.58c-19.356 0-30.828-21.65-19.961-37.666z" fill="#fe3f67"/>
+        <path fill="#fe5578" d="M348.518 351.356l78.333 115.44z"/>
+        <path class="flask-heart" d="M259.438 403.702c-28.686-31.873-54.183 0-41.434 25.497 12.749 25.498 41.434 35.06 41.434 35.06s28.686-9.561 41.434-35.06c12.749-25.497-12.749-57.37-41.434-25.497z" fill="#efecf1"/>
+    </svg>
+
+    <svg id="svg2" viewBox="0 0 500 500">
+        <style>
+        .st {fill: none;stroke-width: 14;stroke-linecap: round;stroke-linejoin: round;stroke-miterlimit: 10}
+        .line-long {stroke: #ffdd7e;}
+        .star {fill: #ffdd7e;}
+        .cir {fill: #fee7a8;}
+        .st-g1 {stroke: #ffc729;}
+        .st-g2 {stroke: #ffe056;}
+
+        .aniGroup.on .line-long{ animation: drawLine .4s 0.3s 1 forwards}
+        .aniGroup.on .st-g1{ animation: drawLine .66s .45s 1 forwards }
+        .aniGroup.on .st-g2{ animation: drawLine .45s .65s 1 forwards }
+
+        @keyframes drawLine {
+            0% {opacity: 1;}
+            100% {stroke-dashoffset: 0;}
+        }
+
+        .aniGroup .star{opacity:0;transform-origin:50% 50%}
+        .aniGroup.on .star{ animation: aniStar 1s .4s 1 forwards;transform-origin:239px  249px}
+
+        @keyframes aniStar {
+            0% {opacity:0;transform: rotate(0);}
+            100% {opacity:1; transform: rotate(360deg);}
+        }
+
+        .aniGroup .cir{opacity:0}
+        .aniGroup.on .cir{animation: aniCir .8s .4s 1 forwards}
+
+        @keyframes aniCir {
+            0% {opacity:0}
+            100% {opacity:1}
+        }
+
+
+        </style>
+        <g class="aniGroup">
+            <path class="star" d="M288.7 244.3L268 231.5l5.9-23.6c1-4-1.4-8.1-5.5-9.1-1.8-.5-3.7-.2-5.4.7l-21.4 11.6-17.5-16.9c-3-2.9-7.7-2.8-10.6.2-1.3 1.3-2 3.1-2.1 5l-.7 24.3-23.4 6.7c-4 1.1-6.3 5.3-5.1 9.3.5 1.8 1.7 3.3 3.3 4.3l20.7 12.7-5.9 23.6c-1 4 1.4 8.1 5.5 9.1 1.8.5 3.7.2 5.4-.7l21.4-11.6 17.5 16.9c2.1 2.1 5.3 2.7 8 1.5 2.8-1.1 4.6-3.8 4.7-6.7l.7-24.3 23.4-6.7c4-1.1 6.3-5.3 5.1-9.3-.6-1.7-1.7-3.3-3.3-4.2z" fill="#f93030" />
+            <path class="cir circle1" d="M198.1 20.6c-.8-6.2-4-11.8-8.9-15.6-10.3-7.9-25.1-6.1-33 4.2-7.9 10.3-6.1 25.1 4.2 33 4.2 3.2 9.2 4.9 14.4 4.9 1 0 2-.1 3-.2 6.2-.8 11.8-4 15.6-8.9s5.5-11.2 4.7-17.4z" fill="#0fea96" />
+            <path class="cir circle2" d="M69.1 174.1c-.8-6.2-4-11.8-8.9-15.6-5-3.8-11.1-5.5-17.4-4.7-6.2.8-11.8 4-15.6 8.9-3.8 4.9-5.5 11.2-4.7 17.4.8 6.2 4 11.8 8.9 15.6 4.2 3.2 9.2 4.9 14.4 4.9 1 0 2-.1 3-.2 6.2-.8 11.8-4 15.6-8.9s5.5-11.2 4.7-17.4z" fill="#1a875b" />
+            <path class="cir circle3" d="M393.8 41.8c-4.9-3.8-11.2-5.5-17.4-4.7-6.2.8-11.8 4-15.6 8.9-3.8 4.9-5.5 11.2-4.7 17.4.8 6.2 4 11.8 8.9 15.6 4.1 3.2 9.2 4.9 14.4 4.9 7 0 14-3.1 18.6-9.1 8-10.3 6.1-25.1-4.2-33z" fill="#80bca4" />
+            <path class="cir circle4" d="M480.7 230.7c-4.9-3.8-11.2-5.5-17.4-4.7-6.2.8-11.8 4-15.6 8.9s-5.5 11.1-4.7 17.4c.8 6.2 4 11.8 8.9 15.6 4.2 3.2 9.2 4.9 14.4 4.9 1 0 2-.1 3-.2 6.2-.8 11.8-4 15.6-8.9 8-10.2 6.1-25.1-4.2-33z" fill="#062619" />
+            <path class="cir circle5" d="M364.3 394.1c-10.3-7.9-25.1-6.1-33 4.2-7.9 10.3-6.1 25.1 4.2 33 4.2 3.2 9.2 4.9 14.4 4.9 1 0 2-.1 3-.2 6.2-.8 11.8-4 15.6-8.9 8-10.3 6.1-25.1-4.2-33z" fill="#a0d8c1" />
+            <path class="line-long" d="M56.6 489.5S106.8 370.7 186 298.7" fill="none" stroke-width="17" stroke-linecap="round" stroke-miterlimit="10" />
+            <path class="st st-g1" d="M243.1 312.9l8.6 46.4" />
+            <path class="st st-g2" d="M278.9 303.7l45.9 69" />
+            <path class="st st-g1" d="M302.7 276.5l53.8 28.2" />
+            <path class="st st-g2" d="M313.5 244.2l104.8 5.1" />
+            <path class="st st-g1" d="M294.4 215.1l82.5-42.3" />
+            <path class="st st-g2" d="M286.5 179.9l63.7-81.7" />
+            <path class="st st-g1" d="M250.7 183.6l18.1-87.4M250.7 185.6l18.1-87.4" />
+            <path class="st st-g2" d="M216.7 168.3l-28.3-98.1" />
+            <path class="st st-g1" d="M187.5 190.9l-42.1-49.8" />
+            <path class="st st-g2" d="M165.5 217.8l-72.8-24.9" />
+            <path class="st st-g1" d="M161.9 248.6l-51 5.6" />
+        </g>
+      </svg>
+      <button id="btnStart">Start</button>
+      <button id="btnReset">reset</button>
+      <script>
+        window.addEventListener('DOMContentLoaded',function(){
+            const svg = document.querySelector('#svg2'),
+            group = svg.querySelector('.aniGroup'),
+            star = svg.querySelector('.star'),
+            lineLong = svg.querySelector('.line-long'),
+            lines = svg.querySelectorAll('.st'),
+            circles = svg.querySelectorAll('.cir'),
+            linesG1 = svg.querySelectorAll(".st-g1"),
+            linesG2 = svg.querySelectorAll(".st-g2");
+
+            function pathPrepare(el){
+                var lineLength = el.getTotalLength();
+                console.log(lineLength)
+                el.style.strokeDasharray = lineLength + 10;       
+                el.style.strokeDashoffset = lineLength + 10;         
+            }
+
+            pathPrepare(lineLong);
+
+            lines.forEach(function (el) {
+                pathPrepare(el);
+            });
+
+            document.querySelector('#btnStart').addEventListener('click', () =>{
+                //shootingAni.restart();
+                group.classList.add('on')
+            })
+            document.querySelector('#btnReset').addEventListener('click', () =>{
+                //shootingAni.restart();
+                group.classList.remove('on')
+            })
+        })
+      </script>
+</body>
+</html>

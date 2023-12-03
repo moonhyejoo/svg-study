@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-interactivity@latest/dist/lottie-interactivity.min.js"></script>
+        
+    <title>Document</title>
+    <style>
+        .first-section {background-color: white;height:100vh;width: 100%;}
+
+        .second-section {height: 100vh;width: 100%;background-color: white; }
+
+        .third-section {height:100vh;width: 100%;background-color: white;  }
+    </style>
+</head>
+<body>
+    <div class="first-section">
+        <h1>Scroll with Offset</h1>
+      </div>
+      <div class="second-section">
+        <lottie-player
+                       id="thirdLottie"
+                       src="https://assets6.lottiefiles.com/packages/lf20_QpeChC.json"
+        >
+        </lottie-player>  
+      </div>
+      <div class="third-section">
+        
+      </div>
+      <script>
+        window.addEventListener('DOMContentLoaded',()=>{
+            LottieInteractivity.create({
+                player: "#thirdLottie",
+                mode:"scroll",
+                actions: [
+                    {
+                        visibility:[0, 0.3],
+                        type: "stop", // seek, play , stop, loop
+                        frames: [0]
+                    },
+                    {
+                        visibility: [0.4, 1.0],
+                        type: "seek",
+                        frames: [50, 240]
+                    }
+                ]
+            });
+        })
+      </script>
+</body>
+</html>

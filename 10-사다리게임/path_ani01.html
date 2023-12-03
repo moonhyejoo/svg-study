@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        
+        circle{cursor: pointer;}
+        
+    </style>
+</head>
+<body>
+    <svg viewBox="0 0 700 700">
+        <g class="line">
+            <path d="M 50 50 L 50 650" fill="none" stroke="#cccccc" stroke-width="15"/>
+            <path d="M 50 150 L 200 150" fill="none" stroke="#cccccc" stroke-width="15"/>
+            <path d="M 200 250 L 350 250" fill="none" stroke="#cccccc" stroke-width="15"/>
+            <path d="M 350 350 L 500 450" fill="none" stroke="#cccccc" stroke-width="15"/>
+            <path d="M 500 550 L 650 550" fill="none" stroke="#cccccc" stroke-width="15"/>
+            <path d="M 200 50 L 200 650" fill="none" stroke="#cccccc" stroke-width="15"/>
+            <path d="M 50 400 L 200 350" fill="none" stroke="#cccccc" stroke-width="15"/>
+            <path d="M 200 500 L 50 500" fill="none" stroke="#cccccc" stroke-width="15"/>
+            <path d="M 350 50 L 350 650" fill="none" stroke="#cccccc" stroke-width="15"/>
+            <path d="M 350 160 L 500 140" fill="none" stroke="#cccccc" stroke-width="15"/>
+            <path d="M 500 300 L 650 250" fill="none" stroke="#cccccc" stroke-width="15"/>
+            <path d="M 500 50 L 500 650" fill="none" stroke="#cccccc" stroke-width="15"/>
+            <path d="M 200 600 L 350 550" fill="none" stroke="#cccccc" stroke-width="15"/>
+            <path d="M 650 50 L 650 650 " fill="none" stroke="#cccccc" stroke-width="15"/>
+        </g>
+        <g fill="none">
+            <path class="path" id="path1" d="M 50 50 L 50 150 L 200 150 L 200 250 L 350 250 L 350 350 L 500 450 L 500 550 L 650 550 L 650 650 " fill="none" stroke="transparent" stroke-width="15"/>
+            <path class="path" id="path2" d="M 200 50 L 200 150 L 50 150 L 50 400 L 200 350 L 200 500 L 50 500 L 50 650 " fill="none" stroke="transparent" stroke-width="15" />
+            <path class="path" id="path3" d="M 350 50 L 350 160 L 500 140 L 500 300 L 650 250 L 650 550 L 500 550 L 500 650 " fill="none" stroke="transparent" stroke-width="15" />
+            <path class="path" id="path4" d="M 500 50 L 500 140 L 350 160 L 350 250 L 200 250 L 200 350 L 50 400 L 50 500 L 200 500 L 200 600 L 350 550 L 350 650 " fill="none" stroke="transparent" stroke-width="15" />
+            <path class="path" id="path5" d="M 650 50 L 650 250 L 500 300 L 500 450 L 350 350 L 350 550 L 200 600 L 200 650 " fill="none" stroke="transparent" stroke-width="15" />
+        </g>
+        
+        <g class="circle_group">
+            <circle r="25" cx="50" cy="50" fill="#979797" class="btn_cir" id="cl">
+                <animateMotion dur="5s" repeatCount="1" begin="indefinite" fill="freeze" path="M 0 0 L 0 100 L 150 100 L 150 200 L 300 200 L 300 300 L 450 400 L 450 500 L 600 500 L 600 600 " />
+            </circle>
+            <circle r="25" cx="200" cy="50" fill="#979797" class="btn_cir" id="c2">            
+                <animateMotion dur="5s" repeatCount="1" begin="indefinite" fill="freeze" path="M 0 0 L 0 100 L -150 100 L -150 350 L 00 300 L 00 450 L -150 450 L -150 600" />
+            </circle>
+            <circle r="25" cx="350" cy="50" fill="#979797" class="btn_cir" id="c3">
+                <animateMotion dur="5s" repeatCount="1" begin="indefinite" fill="freeze" path="M 0 0 L 0 110 L 150 90 L 150 250 L 300 200 L 300 500 L 150 500 L 150 600" />
+            </circle>
+            <circle r="25" cx="500" cy="50" fill="#979797" class="btn_cir" id="c4">        
+                <animateMotion dur="5s" repeatCount="1" begin="indefinite" fill="freeze" path="M 0 0 L 0 90 L -150 110 L -150 200 L -300 200  L -300 300 L -450 350 L -450 450 L -300 450 L -300 550 L -150 500 L -150 600" />
+            </circle>
+            <circle r="25" cx="650" cy="50" fill="#979797" class="btn_cir" id="c5"> 
+                <animateMotion dur="5s" repeatCount="1" begin="indefinite" fill="freeze" path="M 0 0 L 0 200 L -150 250 L -150 400 L -300 300 L -300 500 L -450 550 L -450 600" />
+            </circle>
+        </g>
+    </svg>
+    <script>
+        window.addEventListener('DOMContentLoaded',function(){
+
+        const svgPaths = Array.from(document.querySelectorAll('.path'));
+        const btns = Array.from(document.querySelectorAll('.btn_cir'));
+        const animateMotionElem = Array.from(document.querySelectorAll('animateMotion'));
+
+        let lineLength = [];
+
+        svgPaths.forEach(function (value,index){
+            lineLength.push(svgPaths[index].getTotalLength())
+            svgPaths[index].style.strokeDasharray = lineLength[index] + " " + lineLength;
+            svgPaths[index].style.strokeDashoffset = "0"
+        })
+
+        btns.forEach((value , index) => {
+            btns[index].addEventListener("click",function(){
+                animateMotionElem[index].beginElement();
+                svgPaths[index].animate(
+                    [
+                        {
+                            strokeDashoffset: `${lineLength[index]}`,
+                            stroke:'#ff5975'
+                        },
+                        {
+                            strokeDashoffset: 0,
+                            stroke:'#ff5975'
+                        }
+                    ],
+                    {
+                        duration: 5000,
+                        easing: "linear",
+                        fill: "both"
+                    }
+                ).onfinish = () =>{
+                    alert('꽝')
+                };
+            })
+        })
+       
+
+        /*
+        const animateMotionElem = document.body.querySelector("animateMotion");
+
+        const lineLength = svgPath.getTotalLength();
+        console.log(lineLength)
+        
+        svgPath.style.strokeDasharray = lineLength + " " + lineLength;
+        svgPath.style.strokeDashoffset = "0";
+
+        btn.addEventListener("click", () => {
+            animateMotionElem.beginElement();
+            svgPath.animate(
+                [
+                    {
+                        //strokeDashoffset: "0",
+                        strokeDashoffset: `${lineLength}`,
+                        stroke:'#ff5975'
+                    },
+                    {
+                        //strokeDashoffset:  `${lineLength}`,
+                        strokeDashoffset: 0,
+                        stroke:'#ff5975'
+                    }
+                ],
+                {
+                    duration: 5000,
+                    easing: "linear",
+                    fill: "both"
+                }
+            ).onfinish = () =>{
+              alert('꽝')
+            };
+            
+        }); */
+      })
+    </script>
+</body>
+</html>
+
+<!-- https://codepen.io/anthonydugois/pen/mewdyZ -->

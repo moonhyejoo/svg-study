@@ -1,0 +1,96 @@
+@import url(https://fonts.googleapis.com/css?family=Indie+Flower);
+body {
+  background: #b36565;
+  color: #a8a89c;
+  text-align: center;
+  font-family: "Indie Flower", cursive;
+}
+
+.wrapper {
+  width: 25vw;
+  margin: auto;
+}
+@media only screen and (max-device-width: 480px) {
+  .wrapper {
+    width: 90vw;
+  }
+}
+.wrapper h2 {
+  font-size: 40px;
+  letter-spacing: 2px;
+  margin-bottom: 0;
+}
+.wrapper p {
+  margin-top: 0;
+  font-size: 28px;
+}
+.wrapper svg {
+  width: 100%;
+}
+.wrapper svg g {
+  cursor: pointer;
+}
+.wrapper svg g#small {
+  display: none;
+}
+
+.st0 {
+  fill: #FFFFFF;
+}
+
+.st1 {
+  fill: #B5ABAC;
+}
+
+.st3 {
+  fill: #304253;
+}
+
+.st4 {
+  fill: #FFFFFD;
+}
+
+.st5 {
+  fill: #7F2117;
+}
+
+.st6 {
+  fill: #D34527;
+}
+
+.st7 {
+  fill: #CE4527;
+}
+
+.st8 {
+  fill: #CE4027;
+}
+
+.st10 {
+  fill: #F1AD9E;
+}
+
+.st11 {
+  opacity: 0.3;
+  fill: #FFFFFF;
+}
+
+.st12 {
+  fill: #F06837;
+}
+
+.st13 {
+  fill: #5D302E;
+}
+
+.st14 {
+  fill: #FDFEFB;
+}
+
+.st17 {
+  fill: #A63523;
+}
+
+.st18 {
+  fill: #443940;
+}/*# sourceMappingURL=morph.css.map */

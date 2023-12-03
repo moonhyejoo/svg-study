@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.5.9/lottie.min.js"></script>
+    <style>
+        body{background-color: black;}
+        h2{color:#fff}
+        #lottie1 {display: inline-block;width: 300px;height: 300px;vertical-align: middle;}
+        .chk_wrap{position:relative;display:inline-block;height: 10vw;}
+        .lottie2 {position:absolute;top:0;left:0;right:0;bottom:0;width: 10vw;height: 10vw;vertical-align: middle;}
+        input {width: 10vw;height: 10vw;margin:0;padding:0;-webkit-border-radius: 0;-webkit-appearance: none;background: transparent;}
+
+        #play_stop {display: inline-block;width: 20vw;height: 20vw;background:none;border:none;cursor:pointer;}
+    </style>
+</head>
+<body>
+   
+    <lottie-player src="https://lottie.host/6f4ee854-3625-4849-8985-e423a0752949/hZWZsrb0zk.json" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" mode="normal" loop autoplay></lottie-player>
+
+    <lottie-player src="music.json" background="transparent" speed="1" style="width: 300px; height: 300px" direction="1" mode="normal" loop autoplay></lottie-player>
+
+    <h2>Lottie 예제1</h2>
+    <div id="lottie1"></div>
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            var animation1 = lottie.loadAnimation({
+                container: document.getElementById('lottie1'),
+                renderer: 'svg',
+                loop: true,
+                autoplay: true,
+                path: 'loading.json'
+            });
+        })
+    </script>
+
+    <h2>Lottie 예제2(체크박스) / stop() , play()</h2>
+    <span class="chk_wrap">
+        <input type="checkbox" id="chk1"/> <!-- <input type="checkbox"/> 에 애니메이션이 직접 적용되지 않아 label 태그로 대체해서 사용 -->
+        <label for="chk1" class="lottie2"></label>
+    </span>
+    <span class="chk_wrap">
+        <input type="checkbox" id="chk2"/>
+        <label for="chk2" class="lottie2"></label>
+    </span>
+    <span class="chk_wrap">
+        <input type="checkbox" id="chk3"/>
+        <label for="chk3" class="lottie2"></label>
+    </span>
+
+    <script>
+        window.addEventListener('DOMContentLoaded',()=>{
+            var btnList = document.getElementsByClassName("lottie2");
+            for (var i = 0, l = btnList.length; i < l; i++) {
+                (function(n) {
+                    var animation2 = lottie.loadAnimation({
+                        container : btnList[n],
+                        render: "svg",
+                        loop: false,
+                        autoplay: false,
+                        path: "check.json"
+                    });
+                    
+                    $(btnList[n]).on("click", function() {
+                        if ($(this).hasClass('on')) {
+                            animation2.stop();
+                            $(this).removeClass('on');
+                        } else {
+                            animation2.play();
+                            $(this).addClass('on');
+                        }
+                    });
+                    
+                })(i);
+            }
+        })
+    </script>
+
+    <h2>Lottie 예제3(pause animation) / 프레임 제어 goToAndStop() , playSegments()</h2>
+    <button type="button" id="play_stop" class="off"><span class="blind">중지</span></button>
+    <ul>
+        <li>on (1frame) ~ off(23frame) ~ on(42frame)</li>
+        <li>off 상테일 경우 23 frame에서 stop</li>
+        <li>off -> on일 경우 23 frame에서 play 해서 42에서 stop</li>
+        <li>on 상태일 경우 1 frame에서 stop</li>
+        <li>on -> off 일 경우 1 frame에서 플레이해서 23에서 stop</li>
+    </ul>
+    
+    <script>        
+        var animation3 = lottie.loadAnimation({
+            container: document.getElementById('play_stop'),
+            renderer: 'svg',
+            loop: false,
+            autoplay: false,
+            path: 'music.json'
+        });
+
+        animation3.addEventListener('DOMLoaded',function(){
+            if($('#play_stop').hasClass('off')) {
+                animation3.goToAndStop(23, true);  // goToAndStop(value,isFrame) value : 제어할 프레임, isFrame 첫번째 인자가 시간 기반인지 프레임 기반인지를 boolean 갑으로 넘겨준다
+            }
+            else if($('#play_stop').hasClass('on')) {
+                animation3.goToAndStop(1, true);      
+            }
+        });
+       
+        $(document).on('click','#play_stop',function(){
+            if($(this).hasClass('off')) {
+                //off -> on
+                animation3.playSegments([23,42], true); // playSegments(segments, forceFlag) 첫번째 인자는 제어할 시작 프레임과 종료 프레임을 배열로 넘기고, 두번째 인자로는 제어할 부분을 바로 실행시키기 위한 boolean값을 넘겨준다.
+                $('.blind').text('재생');
+                $(this).removeClass('off');
+                $(this).addClass('on');
+            }
+            else if($(this).hasClass('on')) {
+                //on -> off
+                animation3.playSegments([1,23], true);
+                $('.blind').text('중지');
+                $(this).removeClass('on');
+                $(this).addClass('off');
+            }
+        });
+    </script>
+</body>
+</html>
